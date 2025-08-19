@@ -11,7 +11,7 @@ Feature: Frontend - Login
 
 
   @Frontend @Example @TC-2 
-  Scenario: Login con credenciales válidas
+  Scenario: Login con usuario no valido
     Given el usuario abre la web de Practicas
     When ingresa el usuario "studentIncorrect"
     And ingresa la contraseña "Password123"
@@ -21,7 +21,7 @@ Feature: Frontend - Login
     
 
   @Frontend @Example @TC-2
-  Scenario: Login con credenciales válidas
+  Scenario: Login con password no valida
     Given el usuario abre la web de Practicas
     When ingresa el usuario "student"
     And ingresa la contraseña "PasswordIncorrect"
