@@ -21,11 +21,12 @@
   "author": "Kiuvi Services",
   "license": "ISC",
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "@badeball/cypress-cucumber-preprocessor": "^22.2.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
     "@cucumber/cucumber": "^11.2.0",
+    "@cypress/browserify-preprocessor": "^3.0.2",
     "@faker-js/faker": "^9.6.0",
-    "cypress": "^14.2.1",
+    "cypress": "^14.5.4",
     "cypress-automation-framework": "file:",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-plugin-api": "^2.11.1",
@@ -36,6 +37,13 @@
   },
   "optionalDependencies": {
     "@esbuild/linux-x64": "0.24.0"
-  }
-
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiuviqa/base-framework-cypress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kiuviqa/base-framework-cypress/issues"
+  },
+  "homepage": "https://github.com/kiuviqa/base-framework-cypress#readme"
 }

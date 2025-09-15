@@ -1,32 +1,21 @@
 const { defineConfig } = require("cypress");
+const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
-const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
-const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild");
-
-async function setupNodeEvents(on, config) {
-
-  await preprocessor.addCucumberPreprocessorPlugin(on, config);
-  config.env.tags = process.env.TAGS || config.env.tags || "";
-  on(
-    "file:preprocessor",
-    createBundler({
-      plugins: [createEsbuildPlugin.default(config)],
-    })
-  );
-
-  return config;
-}
-
-
 module.exports = defineConfig({
-  env: {
-    tags: "",
-  },
   e2e: {
-    setupNodeEvents,
-    specPattern: "cypress/journeys/**/features/**/*.feature",
-    chromeWebSecurity: false,
+    setupNodeEvents(on, config) {
+      require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin(on, config);
+      on("file:preprocessor", createBundler({
+        plugins: [createEsbuildPlugin(config)],
+      }));
+      return config;
+    },
+    specPattern: "cypress/journeys/features/e2e/**/*.feature",
     viewportWidth: 1920,
     viewportHeight: 1080,
-  },
+    responseTimeout: 20000,
+    defaultCommandTimeout: 20000
+  }, 
 });
+
+

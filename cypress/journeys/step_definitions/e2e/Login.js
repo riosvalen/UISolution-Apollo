@@ -6,30 +6,115 @@ const login = new LoginPage();
 // Esto nos permite usar diferentes configuraciones según el entorno (TST, STG, etc.)
 const envi = Cypress.env('ENV');
 // Obtenemos la URL base de la aplicación según el entorno
-const url = Cypress.env(`${envi}`).url;
+const url = Cypress.env(envi).url_apollo;
+//transformar variable a alias
+//cy.wrap(usuario).as("nombreUsuario")
+//cy.wrap(contraseña).as("contraseñaUsuario")
 
-
-Given("el usuario abre la web de Practicas", function () {
-    // Visitamos la URL de la aplicación
-    cy.visit(`${url}`)
+Given("el usuario abre la web de Apollo", () => {
+    cy.visit(`${url}`);
 });
 
-When("ingresa el usuario {string}", function (username) {
-    // Llenamos el campo de usuario con el valor proporcionado
-    login.typeUsername(username);
+When("el usuario hace click en iniciar sesion", () => {
+    login.clickLogin()
 });
 
-When("ingresa la contraseña {string}", function (password) {
-    // Llenamos el campo de contraseña con el valor proporcionado
-    login.typePassword(password);
+Then("el sistema abre el modal de inicio de sesion", () =>{
+    login.compareLoginModal();
 });
 
-When("el usuario hace clic en el botón ingresar", function () {
-    // Hacemos clic en el botón de ingresar
-    login.clickLogin();
+When("el usuario ingresa el correo electronico tourist valido", () =>{
+    login.sendTouristUsername();
 });
 
-Then("el sistema muestra el mensaje de error {string}", function (expectedError) {
-    // Verificamos que el mensaje de error mostrado sea el esperado
-    login.getErrorMessage().should('have.text', expectedError);
+When("el usuario hace click en continuar", () =>{
+    login.clickNextStep();
+    cy.wait(500)
 });
+
+When("el usuario ingresa la contraseña turista", () =>{
+    login.sendTouristPassword()
+});
+
+When("el usuario hace click en continuar al sitio turista", () =>{
+    login.clickContinueToSiteTourist();
+});
+
+When("el usuario hace click en continuar al sitio partner", () =>{
+    login.clickContinueToSitePartner();
+})
+
+Then("el sistema muestra el modal de ingreso", () =>{
+    login.compareWelcomeModal();
+});
+
+Then("el sistema muestra la home de apollo", () =>{
+    login.compareApolloHome();
+});
+
+//TC-2
+
+When("el usuario ingresa el correo electronico no valido", () =>{
+    login.SendInvalidUser();
+});
+
+Then("el sistema muestra el modal de registro", () =>{
+login.compareSignUpModal();
+});
+
+//TC_3
+ When("el usuario ingresa una contraseña invalida", () =>{
+    login.sendInvalidPassword();
+ });
+
+ Then("el sistema muestra error en la contraseña", () =>{
+    login.failedPassMessage();
+ });
+ 
+ //TC-4
+ When("el usuario ingresa el correo electronico partner SIC valido", () =>{
+    login.sendSicUsername();
+ });
+
+ When("el usuario ingresa la contraseña partner SIC", () =>{
+    login.sendSicPassword();
+ });
+
+ //TC-6
+ When("el usuario hace click en ingresar al panel", () =>{
+    login.clikIngressPanel();
+ });
+
+ //Then("el sistema muestra la home de pdclite", () =>{
+    //login.visitPdcLiteHome();
+// });
+
+ //TC-7
+
+ When("el usuario ingresa el correo electronico partner SIRO valido", () =>{
+    login.sendSiroUser();
+ });
+
+ When("el usuario ingresa la contraseña partner SIRO", () =>{
+    login.sendSiroPassword();
+ });
+ 
+ //TC-10
+
+ When("el usuario hace click en el menu", () =>{
+    login.clickMenuApollo();
+ });
+
+ When("el usuario hace click en cerrar sesion", () =>{
+    login.clickLogout();
+ });
+
+ Then("el sistema muestra el menu con el boton de inicio de sesion", () =>{
+    login.compareLogout();
+ });
+
+
+
+
+
+
