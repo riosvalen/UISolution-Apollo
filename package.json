@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "cypress:open:dev": "cypress open --e2e --browser chrome -e ENV=DEV",
-    "cypress:open:tst": "cypress open --e2e --browser chrome -e ENV=TST",
+    "cypress:open:tst:chrome": "cypress open --e2e --browser chrome -e ENV=TST",
+    "cypress:open:tst:edge": "cypress open --e2e --browser edge -e ENV=TST",
+    "cypress:open:tst:firefox": "cypress open --e2e --browser firefox -e ENV=TST",
+    "cypress:open:prod": "cypress open --e2e --browser chrome -e ENV=PROD",
     "cypress:runner:api:tst": "cypress run --spec cypress/journeys/features/api/**/*.feature --browser chrome -e ENV=TST",
     "cypress:runner:e2e:tst": "cypress run --spec cypress/journeys/features/e2e/**/*.feature --browser chrome -e ENV=TST"
   },
@@ -33,7 +36,8 @@
     "esbuild": "latest",
     "eslint": "^9.22.0",
     "eslint-plugin-cypress": "^4.2.0",
-    "multiple-cucumber-html-reporter": "^3.6.0"
+    "multiple-cucumber-html-reporter": "^3.6.0",
+    "npm-run-all": "^4.1.5"
   },
   "optionalDependencies": {
     "@esbuild/linux-x64": "0.24.0"

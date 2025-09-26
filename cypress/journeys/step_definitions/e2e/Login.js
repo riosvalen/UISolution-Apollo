@@ -23,8 +23,24 @@ Then("el sistema abre el modal de inicio de sesion", () =>{
     login.compareLoginModal();
 });
 
-When("el usuario ingresa el correo electronico tourist valido", () =>{
-    login.sendTouristUsername();
+When("el usuario ingresa el correo electronico {string} valido", (usuario) =>{
+    cy.log(usuario)
+    if (usuario == "correo_turista")
+    {
+        usuario = Cypress.env(envi).touristUsername
+        login.sendUsername(usuario);
+    }
+    else if (usuario == "correo_partner_sic")
+    {
+        usuario = Cypress.env(envi).sicUsername;
+        login.sendUsername(usuario);
+    }
+    else if (usuario == "correo_partner_siro")
+    {
+        usuario = Cypress.env(envi).siroUsername;
+        login.sendUsername(usuario);
+    }
+
 });
 
 When("el usuario hace click en continuar", () =>{
@@ -32,8 +48,25 @@ When("el usuario hace click en continuar", () =>{
     cy.wait(500)
 });
 
-When("el usuario ingresa la contraseña turista", () =>{
-    login.sendTouristPassword()
+When("el usuario ingresa la contraseña {string} valida", (contraseña) =>{
+    cy.log(contraseña)    
+    if (contraseña == "contraseña_turista")
+    {
+        contraseña = Cypress.env(envi).touristPassword;
+        login.sendPassword(contraseña);
+    }
+    else if (contraseña == "contraseña_sic")
+    {
+        contraseña = Cypress.env(envi).sicPassword;
+        login.sendPassword(contraseña);
+    }
+    else if (contraseña == "contraseña_siro")
+    {
+        contraseña = Cypress.env(envi).siroPassword;
+        login.sendPassword(contraseña);
+    }
+    
+    
 });
 
 When("el usuario hace click en continuar al sitio turista", () =>{
@@ -82,14 +115,24 @@ login.compareSignUpModal();
 
  //TC-6
  When("el usuario hace click en ingresar al panel", () =>{
+    cy.log("antes del click")
+    cy.wait(5000)
     login.clikIngressPanel();
+    cy.log("hizo click y termino el step")
  });
 
- //Then("el sistema muestra la home de pdclite", () =>{
-    //login.visitPdcLiteHome();
-// });
+Then("el sistema muestra la home de pdclite", () =>{
+   cy.log("Hola mundo")
+    // var url = Cypress.env(envi).url_pdclite;
+    //cy.log(url);
 
- //TC-7
+    //cy.origin(url, () =>{
+    //    cy.url().should("include", "pdclite")
+    //});
+
+});
+
+
 
  When("el usuario ingresa el correo electronico partner SIRO valido", () =>{
     login.sendSiroUser();
