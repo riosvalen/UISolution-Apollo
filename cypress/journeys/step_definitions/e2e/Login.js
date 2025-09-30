@@ -23,6 +23,16 @@ Then("el sistema abre el modal de inicio de sesion", () =>{
     login.compareLoginModal();
 });
 
+When("el usuario ingresa el correo electronico {string} tourist valido", (usuario) =>{
+    usuario = Cypress.env(envi).touristUsername;
+    login.sendUsername(usuario);
+});
+
+When("el usuario ingresa la contraseña {string} turista", (contraseña) =>{
+    contraseña = Cypress.env(envi).touristPassword;
+    login.sendPassword(contraseña);
+})
+
 When("el usuario ingresa el correo electronico {string} valido", (usuario) =>{
     cy.log(usuario)
     if (usuario == "correo_turista")
@@ -64,9 +74,17 @@ When("el usuario ingresa la contraseña {string} valida", (contraseña) =>{
     {
         contraseña = Cypress.env(envi).siroPassword;
         login.sendPassword(contraseña);
-    }
-    
-    
+    }   
+});
+
+When("el usuario ingresa el correo electronico {string} partner SIRO valido", (usuario)=>{
+    usuario = Cypress.env(envi).siroUsername;
+    login.sendUsername(usuario);
+});
+
+When("el usuario ingresa el correo electronico {string} partner SIC valido", (usuario)=>{
+    usuario = Cypress.env(envi).sicUsername;
+    login.sendUsername(usuario);
 });
 
 When("el usuario hace click en continuar al sitio turista", () =>{
@@ -85,8 +103,6 @@ Then("el sistema muestra la home de apollo", () =>{
     login.compareApolloHome();
 });
 
-//TC-2
-
 When("el usuario ingresa el correo electronico no valido", () =>{
     login.SendInvalidUser();
 });
@@ -95,7 +111,6 @@ Then("el sistema muestra el modal de registro", () =>{
 login.compareSignUpModal();
 });
 
-//TC_3
  When("el usuario ingresa una contraseña invalida", () =>{
     login.sendInvalidPassword();
  });
@@ -104,16 +119,6 @@ login.compareSignUpModal();
     login.failedPassMessage();
  });
  
- //TC-4
- When("el usuario ingresa el correo electronico partner SIC valido", () =>{
-    login.sendSicUsername();
- });
-
- When("el usuario ingresa la contraseña partner SIC", () =>{
-    login.sendSicPassword();
- });
-
- //TC-6
  When("el usuario hace click en ingresar al panel", () =>{
     cy.log("antes del click")
     cy.wait(5000)
@@ -129,20 +134,7 @@ Then("el sistema muestra la home de pdclite", () =>{
     //cy.origin(url, () =>{
     //    cy.url().should("include", "pdclite")
     //});
-
 });
-
-
-
- When("el usuario ingresa el correo electronico partner SIRO valido", () =>{
-    login.sendSiroUser();
- });
-
- When("el usuario ingresa la contraseña partner SIRO", () =>{
-    login.sendSiroPassword();
- });
- 
- //TC-10
 
  When("el usuario hace click en el menu", () =>{
     login.clickMenuApollo();
@@ -155,6 +147,8 @@ Then("el sistema muestra la home de pdclite", () =>{
  Then("el sistema muestra el menu con el boton de inicio de sesion", () =>{
     login.compareLogout();
  });
+
+ 
 
 
 
