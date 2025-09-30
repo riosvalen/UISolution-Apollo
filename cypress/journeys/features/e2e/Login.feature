@@ -45,7 +45,7 @@ Feature: Frontend - Login
 #     Then el sistema muestra la home de pdclite
 #       Examples:
 #         |rol           | correo                | contraseña        |
-#         | partner_sic  | correo_partner_sic    | contraseña_sic     |
+#         | partner_sic  | correo_partner_sic    | contraseña_sic    |
 
 
   @TC-5 @PARTNERSIC @OK_RUN @LOGIN 
