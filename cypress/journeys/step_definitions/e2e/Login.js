@@ -55,7 +55,6 @@ When("el usuario ingresa el correo electronico {string} valido", (usuario) =>{
 
 When("el usuario hace click en continuar", () =>{
     login.clickNextStep();
-    cy.wait(500)
 });
 
 When("el usuario ingresa la contraseña {string} valida", (contraseña) =>{
@@ -147,6 +146,21 @@ Then("el sistema muestra la home de pdclite", () =>{
  Then("el sistema muestra el menu con el boton de inicio de sesion", () =>{
     login.compareLogout();
  });
+
+ Given("el turista esta logueado", () =>{
+    cy.visit(`${url}`);
+    login.clickLogin();
+    login.compareLoginModal();
+    usuario = Cypress.env(envi).touristUsername;
+    login.sendUsername(usuario);
+    login.clickNextStep();
+    contraseña = Cypress.env(envi).touristPassword;
+    login.sendPassword(contraseña);
+    login.clickNextStep();
+    login.compareWelcomeModal();
+    login.clickNextStep();
+    login.compareApolloHome();
+ } )
 
  
 
