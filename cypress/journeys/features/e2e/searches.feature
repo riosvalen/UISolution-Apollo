@@ -16,8 +16,8 @@ Feature: Frontend - Searches
             |Bariloche                |
             |Mar del plata            |
             |Carlos paz               |
-            #|Ciudad de Buenos aires    |
-            |Capital Federal           |
+            #|Ciudad de Buenos aires  |
+            |Capital Federal          |
             |Monte hermoso            |
             |San martin de los andes  |
 
