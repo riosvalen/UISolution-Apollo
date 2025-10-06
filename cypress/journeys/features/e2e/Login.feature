@@ -20,7 +20,7 @@ Feature: Frontend - Login
     Then el sistema muestra error en la contraseña
 
   @TC-3 @OK_RUN @LOGIN 
-  Scenario Outline: Login usuario turista con credenciales válidas 
+  Scenario Outline: Login usuario con credenciales válidas 
     When el usuario ingresa el correo electronico "<correo>" valido
     And el usuario hace click en continuar
     And el usuario ingresa la contraseña "<contraseña>" valida
